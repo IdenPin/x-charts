@@ -2,11 +2,11 @@
  * @Author: pdeng
  * @Date: 2019-10-14 22:31:15
  * @Last Modified by: pdeng
- * @Last Modified time: 2019-10-14 23:33:09
+ * @Last Modified time: 2019-10-15 00:01:17
  */
 import Echarts from 'echarts'
 import _ from 'lodash'
-import DefaultOpt from './defaultOpt'
+import DefaultOpt from './default-opt'
 export default class Xcharts {
   constructor(el, chartType, opt = {}) {
     this.el = el
@@ -15,7 +15,7 @@ export default class Xcharts {
 
     // echarts 图表空对象
     this.eObj = {}
-    // 最终合并的 option
+    // 合并的 option
     this.option = {}
     this.init()
   }
@@ -34,6 +34,7 @@ export default class Xcharts {
   // 1. 合并 defaultOpt 与 opt
   mergeOpt() {
     this.option = _.merge(DefaultOpt[this.chartType], this.opt)
+    console.log('this.option', this.option)
   }
   // ==》用户触发-接受外面传递的 data
   setData(data) {
