@@ -1,10 +1,11 @@
 <template>
   <div class="home">
     <h1>X · Charts</h1>
-    <div ref="line" style="width: 400px;height:300px" />
+    <div id="chart1" style="width: 400px;height:300px" />
   </div>
 </template>
 <script>
+import { Xcharts } from '@/utils/xcharts'
 export default {
   name: 'Home',
   mounted() {
@@ -12,21 +13,13 @@ export default {
   },
   methods: {
     renderCharts() {
-      this.$charts.init(this.$refs['line']).setOption({
-        xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [
-          {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line'
-          }
-        ]
+      const biz = new Xcharts('chart1', 'line')
+      biz.setData({
+        lData: ['企业数'],
+        xData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        sData: [820, 932, 901, 934, 1290, 1330, 1320]
       })
+      console.log('biz', biz)
     }
   }
 }
