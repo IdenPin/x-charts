@@ -96,7 +96,7 @@ export const DEFAULT_THEME = {
     left: 10,
     top: 30,
     right: 10,
-    bottom: 0,
+    bottom: 10,
     containLabel: true
   },
   legend: {
@@ -104,8 +104,8 @@ export const DEFAULT_THEME = {
       color: '#666',
       fontSize: 12
     },
-    right: 0,
     icon: 'rect',
+    right: 0,
     itemWidth: 20,
     itemHeight: 10,
     itemGap: 10

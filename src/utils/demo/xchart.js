@@ -1,12 +1,12 @@
 // import Echarts from 'echarts'
-import { ChartColor } from '@/common/utils/echart'
-import { createTwoDimension, deepMerge } from '@/common/utils'
+import { ChartColor } from "@/common/utils/echart"
+import { createTwoDimension, deepMerge } from "@/common/utils"
 
 // 默认数据
 const defaultData = {
-  lData: ['甄姬', '高渐离', '王昭君'],
-  xData: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-  sData: createTwoDimension(3, 7)
+  legendData: ["甄姬", "高渐离", "王昭君"],
+  columns: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+  rows: createTwoDimension(3, 7)
 }
 /**
  *  Xchart 图表封装
@@ -30,7 +30,10 @@ export default class Xchart {
     this.init()
   }
   init() {
-    const domEl = this.rId.indexOf('#') === 0 ? document.getElementById(this.rId.split('#').pop(0)) : this.ctx.$refs[this.rId]
+    const domEl =
+      this.rId.indexOf("#") === 0
+        ? document.getElementById(this.rId.split("#").pop(0))
+        : this.ctx.$refs[this.rId]
     this.chart = this.ctx.$echarts.init(domEl, null, {
       devicePixelRatio: 1
     })
@@ -43,21 +46,21 @@ export default class Xchart {
       data = {}
     }
 
-    if (this.type === 'line' || this.type === 'bar') {
-      if (data.lData) {
-        tempConfig.legend.data = data.lData
+    if (this.type === "line" || this.type === "bar") {
+      if (data.legendData) {
+        tempConfig.legend.data = data.legendData
       }
       // 如果xAxis配置传入 xToy 则x和y对调
       if (this.opt && this.opt.xAxis && this.opt.xAxis.xToy) {
-        if (data.xData) {
-          tempConfig.yAxis.data = data.xData
+        if (data.columns) {
+          tempConfig.yAxis.data = data.columns
         }
       } else {
-        if (data.lData) {
-          tempConfig.legend.data = data.lData
+        if (data.legendData) {
+          tempConfig.legend.data = data.legendData
         }
-        if (data.xData) {
-          tempConfig.xAxis.data = data.xData
+        if (data.columns) {
+          tempConfig.xAxis.data = data.columns
         }
         if (data.yData) {
           tempConfig.yAxis = data.yData
@@ -66,26 +69,26 @@ export default class Xchart {
 
       // 注意option入参时为了方便series的特殊写法，应该传入数组的。为了方便传入对象，因此这块做特殊处理
       if (this.opt && this.opt.series) {
-        tempConfig.series = defaultData.lData.map((v, i) => ({
+        tempConfig.series = defaultData.legendData.map((v, i) => ({
           name: v,
           type: this.type,
-          data: defaultData.sData[i]
+          data: defaultData.rows[i]
         }))
       }
-      if (data.sData) {
-        if (!data.lData) {
-          console.log('自定义数据输入legend必须传入.. lData: ["xxx"]')
+      if (data.rows) {
+        if (!data.legendData) {
+          console.log('自定义数据输入legend必须传入.. legendData: ["xxx"]')
           return
         }
-        tempConfig.series = data.lData.map((v, i) => {
+        tempConfig.series = data.legendData.map((v, i) => {
           // 默认 series 的样式
           let biz = {
             name: v,
             smooth: true,
-            stack: '总量',
+            stack: "总量",
             type: this.type,
             symbolSize: 5, // 折线点的大小
-            data: data.sData && data.sData[i]
+            data: data.rows && data.rows[i]
           }
           // 合并 series
           if (this.opt && this.opt.series) {
@@ -120,9 +123,9 @@ export default class Xchart {
           return biz
         })
       }
-    } else if (this.type === 'pie') {
-      if (data.lData) {
-        tempConfig.legend.data = data.lData
+    } else if (this.type === "pie") {
+      if (data.legendData) {
+        tempConfig.legend.data = data.legendData
       }
 
       // 合并 series
@@ -130,12 +133,12 @@ export default class Xchart {
         tempConfig.series[0] = deepMerge(tempConfig.series[0], this.opt.series)
       }
 
-      if (data.sData) {
-        tempConfig.series[0].data = data.sData
+      if (data.rows) {
+        tempConfig.series[0].data = data.rows
       }
-    } else if (this.type === 'treemap') {
-      if (data.sData) {
-        tempConfig.series[0].data = data.sData
+    } else if (this.type === "treemap") {
+      if (data.rows) {
+        tempConfig.series[0].data = data.rows
       }
     }
     this.chart.setOption(tempConfig, true)
@@ -146,16 +149,16 @@ export default class Xchart {
     const globalDefaultOpt = {
       color: ChartColor.base,
       tooltip: {
-        borderColor: '#000',
+        borderColor: "#000",
         borderWidth: 1,
-        backgroundColor: 'rgba(0,0,0,0.7)',
+        backgroundColor: "rgba(0,0,0,0.7)",
         borderRadius: 0,
         padding: [5, 12, 5, 12],
         textStyle: {
-          color: '#fff',
+          color: "#fff",
           fontSize: 14
         },
-        extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)'
+        extraCssText: "box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)"
       },
       grid: {
         left: 0,
@@ -165,9 +168,9 @@ export default class Xchart {
         containLabel: true
       },
       legend: {
-        icon: 'circle',
+        icon: "circle",
         textStyle: {
-          color: '#666',
+          color: "#666",
           fontSize: 12
         },
         itemWidth: 12,
@@ -179,15 +182,15 @@ export default class Xchart {
     // line 或者 bar 配置
     const lineOrBarDefaultOpt = {
       tooltip: {
-        trigger: 'axis',
+        trigger: "axis",
         axisPointer: {
-          type: 'shadow'
+          type: "shadow"
         }
       },
       legend: {
-        data: defaultData.lData,
+        data: defaultData.legendData,
         right: 0,
-        icon: 'rect',
+        icon: "rect",
         itemWidth: 20,
         itemHeight: 10,
         itemGap: 10
@@ -195,7 +198,7 @@ export default class Xchart {
       xAxis: {
         // 坐标轴两边留白策略
         boundaryGap: true,
-        data: defaultData.xData,
+        data: defaultData.columns,
         // x轴的字体样式
         axisLabel: {
           show: true,
@@ -218,7 +221,7 @@ export default class Xchart {
           show: false,
           lineStyle: {
             color: ChartColor.lineStyle,
-            type: 'dashed'
+            type: "dashed"
           }
         }
       },
@@ -244,16 +247,16 @@ export default class Xchart {
           show: true,
           lineStyle: {
             color: ChartColor.lineStyle,
-            type: 'solid'
+            type: "solid"
           }
         }
       },
-      // 通过 lData 和 sData 生成 series
-      series: defaultData.lData.map((v, i) => ({
+      // 通过 legendData 和 rows 生成 series
+      series: defaultData.legendData.map((v, i) => ({
         name: v,
         smooth: true,
         type: this.type,
-        data: defaultData.sData[i]
+        data: defaultData.rows[i]
       }))
     }
 
@@ -267,31 +270,31 @@ export default class Xchart {
     // pie 配置
     const pieDefaultOpt = {
       tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
+        trigger: "item",
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
       },
       legend: {
         // orient: 'vertical',
-        x: 'left',
+        x: "left",
 
-        data: defaultData.lData
+        data: defaultData.legendData
       },
       series: [
         {
-          name: '占比',
-          type: 'pie',
-          radius: '55%',
+          name: "占比",
+          type: "pie",
+          radius: "55%",
           // 防止标签重叠策略
           avoidLabelOverlap: true,
           label: {
             normal: {
               show: true,
-              position: 'right'
+              position: "right"
             },
             emphasis: {
               show: true,
               textStyle: {
-                fontSize: '14'
+                fontSize: "14"
               }
             }
           },
@@ -300,12 +303,12 @@ export default class Xchart {
               normal: {
                 show: true
               }
-
             }
           },
-          data: defaultData.lData.map(v => {
+          data: defaultData.legendData.map(v => {
             return {
-              value: Math.round(Math.random() * 100), name: v
+              value: Math.round(Math.random() * 100),
+              name: v
             }
           })
         }
@@ -317,9 +320,9 @@ export default class Xchart {
       calculable: true,
       series: [
         {
-          type: 'treemap',
-          width: '100%',
-          height: '100%',
+          type: "treemap",
+          width: "100%",
+          height: "100%",
           roam: false, // 是否开启拖拽漫游（移动和缩放）
           nodeClick: false, // 点击节点后的行为,false无反应
           breadcrumb: {
@@ -330,7 +333,7 @@ export default class Xchart {
               show: true,
               position: [10, 10],
               textStyle: {
-                fontSize: '13'
+                fontSize: "13"
               }
             }
           },
@@ -338,22 +341,22 @@ export default class Xchart {
             normal: {
               label: {
                 show: true,
-                formatter: '{b}'
+                formatter: "{b}"
               },
               textStyle: {
-                color: '#fff',
+                color: "#fff",
                 fontSize: 12
               },
               borderWidth: 1,
-              borderColor: '#fff'
+              borderColor: "#fff"
             },
             emphasis: {
               label: {
                 show: true
               },
-              color: '#3a92ec',
+              color: "#3a92ec",
               borderWidth: 1,
-              borderColor: '#fff'
+              borderColor: "#fff"
             }
           }
         }
@@ -363,14 +366,14 @@ export default class Xchart {
     let options
     // 通过传入的表格类型，选择对应的option进行深度合并
     switch (this.type) {
-      case 'bar':
-      case 'line':
+      case "bar":
+      case "line":
         options = lineOrBarDefaultOpt
         break
-      case 'pie':
+      case "pie":
         options = pieDefaultOpt
         break
-      case 'treemap':
+      case "treemap":
         options = treemapDefaultOpt
         break
       default:
@@ -381,4 +384,3 @@ export default class Xchart {
     return this
   }
 }
-

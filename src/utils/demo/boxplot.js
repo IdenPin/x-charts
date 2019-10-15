@@ -8,7 +8,7 @@ import dataTool from 'echarts/extension/dataTool'
 //     chart.setOption(this.option(dataTool.prepareBoxplotData(dataJson.data), dataJson.xAxis, ctx), true)
 //     return chart
 //   },
-//   option(res, xAxisData, ctx) {
+//   option(res, xAxirows, ctx) {
 //     const option = {
 //       color: ChartColor.base,
 //       tooltip: {
@@ -36,7 +36,7 @@ import dataTool from 'echarts/extension/dataTool'
 //       },
 //       xAxis: {
 //         type: 'category',
-//         data: xAxisData,
+//         data: xAxirows,
 //         boundaryGap: true,
 //         nameGap: 30,
 //         splitArea: {
@@ -100,7 +100,7 @@ import dataTool from 'echarts/extension/dataTool'
 //         {
 //           name: 'boxplot',
 //           type: 'boxplot',
-//           data: res.boxData,
+//           data: res.bocolumns,
 //           tooltip: {
 //             formatter: function(param) {
 //               return [
@@ -152,7 +152,7 @@ export default class ChartPie {
   setData(data) {
     this.drawChart(dataTool.prepareBoxplotData(data.data), data.xAxis)
   }
-  drawChart(res, xAxisData) {
+  drawChart(res, xAxirows) {
     this.chart.setOption({
       color: ChartColor.base,
       tooltip: {
@@ -180,7 +180,7 @@ export default class ChartPie {
       },
       xAxis: {
         type: 'category',
-        data: xAxisData,
+        data: xAxirows,
         boundaryGap: true,
         nameGap: 30,
         splitArea: {
@@ -244,7 +244,7 @@ export default class ChartPie {
         {
           name: 'boxplot',
           type: 'boxplot',
-          data: res.boxData,
+          data: res.bocolumns,
           tooltip: {
             formatter: function(param) {
               return [

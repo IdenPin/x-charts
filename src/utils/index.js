@@ -10,3 +10,36 @@ export function deepMerge(obj1, obj2) {
   }
   return obj1
 }
+
+// 数据生成
+export const MockData = {
+  array(len, slice = -2) {
+    return Array.from({ length: len }, (_, index) => {
+      return Number(
+        Math.random()
+          .toString()
+          .slice(slice)
+      )
+    })
+  },
+  date(len, type) {
+    return Array.from({ length: len }, (_, index) => {
+      let temp = ''
+      switch (type.toLocaleLowerCase()) {
+        case 'day':
+          temp = Number(index + 1) + '日'
+          break
+        case 'month':
+          temp = Number(index + 1) + '月'
+          break
+        case 'week':
+          temp = '第' + Number(index + 1) + '周'
+          break
+        default:
+          '20' + Number(index + 1) + '年'
+          break
+      }
+      return temp
+    })
+  }
+}
