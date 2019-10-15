@@ -2,7 +2,7 @@
  * @Author: pdeng
  * @Date: 2019-10-14 22:31:15
  * @Last Modified by: pdeng
- * @Last Modified time: 2019-10-15 22:36:43
+ * @Last Modified time: 2019-10-16 00:10:00
  */
 import Echarts from 'echarts'
 import { deepMerge } from '@/utils/'
@@ -18,7 +18,7 @@ class Xcharts {
     // 合并的 option
     this.mergeOpt = {}
     this.init()
-    console.log(DefaultOpt)
+    return this
   }
   init() {
     if (!this.el) {
@@ -44,6 +44,7 @@ class Xcharts {
   // ==》用户触发-接受外面传递的 data
   setData(data) {
     this.optionDataBundle(data)
+    return this
   }
   // 2. 组合 option 与 data
   optionDataBundle({ legendData, rows, columns }) {

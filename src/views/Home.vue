@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>X · Charts</h1>
+    <h1 style="text-align:center">X · Charts</h1>
     <el-main>
       <el-card v-for="(v,i) in items" :key="i" style="margin-bottom:30px">
         <div slot="header" class="clearfix">
@@ -25,11 +25,10 @@
 import { MockData } from '@/utils'
 import { Xcharts } from '@/utils/xcharts'
 import { codemirror } from 'vue-codemirror'
+import _ from 'lodash'
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/monokai.css'
-import 'codemirror/theme/base16-dark.css'
+import 'codemirror/theme/base16-light.css'
 import 'codemirror/mode/javascript/javascript.js'
-// theme css
 import Echarts from 'echarts'
 export default {
   name: 'Home',
@@ -46,7 +45,7 @@ export default {
         foldGutter: true,
         styleSelectedText: true,
         mode: 'text/javascript',
-        theme: 'base16-dark'
+        theme: 'base16-light'
       },
       dialogVisible: false,
       items: [
@@ -137,22 +136,34 @@ new Xcharts('chart3', 'line', {
 })`
         }
       ],
-      codeView: ''
+      codeView: '',
+      chart0: null,
+      chart1: null,
+      chart2: null,
+      chart3: null
     }
   },
   mounted() {
     this.renderCharts()
+    this.chartResize()
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize')
+    this.chart0.chart && this.chart0.chart.dispose()
+    this.chart1.chart && this.chart1.chart.dispose()
+    this.chart2.chart && this.chart2.chart.dispose()
+    this.chart3.chart && this.chart3.chart.dispose()
   },
   methods: {
     renderCharts() {
       // 图1
-      new Xcharts('chart0', 'line').setData({
+      this.chart0 = new Xcharts('chart0', 'line').setData({
         legendData: ['企业数'],
         columns: MockData.date(30, 'day'),
         rows: MockData.array(30)
       })
       // 图2
-      new Xcharts('chart1', 'line', {
+      this.chart1 = new Xcharts('chart1', 'line', {
         series: [
           {
             stack: '总量',
@@ -165,7 +176,7 @@ new Xcharts('chart3', 'line', {
         rows: [MockData.array(12), MockData.array(12)]
       })
       // 图3
-      new Xcharts('chart2', 'bar').setData({
+      this.chart2 = new Xcharts('chart2', 'bar').setData({
         legendData: ['比率', '余额', '年龄'],
         columns: MockData.date(5, 'week'),
         rows: [MockData.array(5), MockData.array(5), MockData.array(5)]
@@ -175,7 +186,7 @@ new Xcharts('chart3', 'line', {
       for (let i = 1; i < 15000; i++) {
         data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]))
       }
-      new Xcharts('chart3', 'line', {
+      this.chart3 = new Xcharts('chart3', 'line', {
         dataZoom: [
           {
             type: 'inside',
@@ -227,6 +238,17 @@ new Xcharts('chart3', 'line', {
     openDialog(i) {
       this.codeView = this.items[i].code
       this.dialogVisible = true
+    },
+    chartResize() {
+      window.addEventListener(
+        'resize',
+        _.debounce(() => {
+          this.chart0.chart && this.chart0.chart.resize()
+          this.chart1.chart && this.chart1.chart.resize()
+          this.chart2.chart && this.chart2.chart.resize()
+          this.chart3.chart && this.chart3.chart.resize()
+        })
+      )
     }
   }
 }
