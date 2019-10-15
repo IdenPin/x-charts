@@ -41,5 +41,17 @@ export const MockData = {
       }
       return temp
     })
+  },
+  dateTime(start, dates) {
+    var base = +new Date(start)
+    var oneDay = 24 * 3600 * dates
+    var date = []
+    for (var i = 1; i < dates; i++) {
+      var now = new Date((base += oneDay))
+      date.push(
+        [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')
+      )
+    }
+    return date
   }
 }

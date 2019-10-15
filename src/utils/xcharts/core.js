@@ -2,10 +2,10 @@
  * @Author: pdeng
  * @Date: 2019-10-14 22:31:15
  * @Last Modified by: pdeng
- * @Last Modified time: 2019-10-15 16:29:02
+ * @Last Modified time: 2019-10-15 22:36:43
  */
 import Echarts from 'echarts'
-import _ from 'lodash'
+import { deepMerge } from '@/utils/'
 import DefaultOpt from './default-opt'
 class Xcharts {
   constructor(el, chartType, opt = {}) {
@@ -37,15 +37,16 @@ class Xcharts {
     // 注意 一定要使用 object.assign 赋值给一个新对象
     this.mergeOpt = Object.assign(
       {},
-      _.merge(DefaultOpt[this.chartType], this.opt)
+      deepMerge(this.opt, DefaultOpt[this.chartType])
     )
+    console.log('this.mergeOpt', this.mergeOpt)
   }
   // ==》用户触发-接受外面传递的 data
   setData(data) {
-    this.optionrowsBundle(data)
+    this.optionDataBundle(data)
   }
   // 2. 组合 option 与 data
-  optionrowsBundle({ legendData, rows, columns }) {
+  optionDataBundle({ legendData, rows, columns }) {
     this.mergeOpt.legend.data = legendData
     this.mergeOpt.xAxis.data = columns
 
@@ -66,15 +67,17 @@ class Xcharts {
       const seriesArr = []
       for (var i = 0; i < legendData.length; i++) {
         // 将拆分后的 data 和 name 于传入的 series 其它属性合并
-        const seriesItem = Object.assign(
-          {
-            name: legendData[i],
-            data: rows[i]
-          },
-          this.mergeOpt.series[0]
+        seriesArr.push(
+          Object.assign(
+            {
+              name: legendData[i],
+              data: rows[i]
+            },
+            this.mergeOpt.series[0]
+          )
         )
-        seriesArr.push(seriesItem)
       }
+      console.log('seriesArr--->', seriesArr)
       this.mergeOpt.series = seriesArr
     }
     this.render()
