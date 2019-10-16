@@ -23,38 +23,19 @@
 <script>
 import { MockData } from '@/utils'
 import { Xcharts } from '@/utils/xcharts'
-import { codemirror } from 'vue-codemirror'
 import _ from 'lodash'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/base16-light.css'
-import 'codemirror/mode/javascript/javascript.js'
 import Echarts from 'echarts'
+import codemirror from '@/mixins/codemirror'
 export default {
   name: 'LineOrBar',
-  components: {
-    codemirror
-  },
+  mixins: [codemirror],
   data() {
     return {
-      cmOptions: {
-        tabSize: 4,
-        styleActiveLine: true,
-        lineNumbers: true,
-        line: true,
-        foldGutter: true,
-        styleSelectedText: true,
-        mode: 'text/javascript',
-        theme: 'base16-light'
-      },
       dialogVisible: false,
       items: [
         {
           title: '折线图',
-          code: `new Xcharts('chart0', 'line').setData({
-  legendData: ['企业数'],
-  columns: MockData.date(30, 'day'),
-  rows: MockData.array(30)
-})`
+          code: `this.chart0 = new Xcharts('chart0', 'line').setData()`
         },
         {
           title: '面积堆叠图',
@@ -133,13 +114,18 @@ new Xcharts('chart3', 'line', {
   columns: MockData.dateTime('2010-3-1', 1500),
   rows: data
 })`
+        },
+        {
+          title: '测试',
+          code: '123'
         }
       ],
       codeView: '',
       chart0: null,
       chart1: null,
       chart2: null,
-      chart3: null
+      chart3: null,
+      chart4: null
     }
   },
   mounted() {
@@ -156,11 +142,7 @@ new Xcharts('chart3', 'line', {
   methods: {
     renderCharts() {
       // 图1
-      this.chart0 = new Xcharts('chart0', 'line').setData({
-        legendData: ['企业数'],
-        columns: MockData.date(30, 'day'),
-        rows: MockData.array(30)
-      })
+      this.chart0 = new Xcharts('chart0', 'line').setData()
       // 图2
       this.chart1 = new Xcharts('chart1', 'line', {
         series: [
@@ -233,6 +215,7 @@ new Xcharts('chart3', 'line', {
         columns: MockData.dateTime('2010-3-1', 1500),
         rows: data
       })
+      this.chart4 = new Xcharts('chart4', 'pie').setData()
     },
     openDialog(i) {
       this.codeView = this.items[i].code

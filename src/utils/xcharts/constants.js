@@ -99,48 +99,50 @@ export const ECHARTS_SETTINGS = [
   'textStyle'
 ]
 
-export const DEFAULT_THEME = {
-  //   categoryAxis: {
-  //     axisLine: { show: false },
-  //     axisTick: { show: false },
-  //     splitLine: { show: false }
-  //   },
-  //   valueAxis: {
-  //     axisLine: { show: false }
-  //   },
-  line: {
-    smooth: true
-  },
-  color: DEFAULT_COLORS,
-  tooltip: {
-    trigger: 'axis',
-    borderColor: '#000',
-    borderWidth: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    borderRadius: 0,
-    padding: [5, 12, 5, 12],
-    textStyle: {
-      color: '#fff',
-      fontSize: 14
+export function DEFAULT_THEME() {
+  return {
+    //   categoryAxis: {
+    //     axisLine: { show: false },
+    //     axisTick: { show: false },
+    //     splitLine: { show: false }
+    //   },
+    //   valueAxis: {
+    //     axisLine: { show: false }
+    //   },
+    line: {
+      smooth: true
     },
-    extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)'
-  },
-  grid: {
-    left: 10,
-    top: 30,
-    right: 10,
-    bottom: 10,
-    containLabel: true
-  },
-  legend: {
-    textStyle: {
-      color: '#666',
-      fontSize: 12
+    color: DEFAULT_COLORS,
+    tooltip: {
+      trigger: 'axis',
+      borderColor: '#000',
+      borderWidth: 1,
+      backgroundColor: 'rgba(0,0,0,0.7)',
+      borderRadius: 0,
+      padding: [5, 12, 5, 12],
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)'
     },
-    icon: 'rect',
-    right: 0,
-    itemWidth: 20,
-    itemHeight: 10,
-    itemGap: 10
+    grid: {
+      left: 10,
+      top: 30,
+      right: 10,
+      bottom: 10,
+      containLabel: true
+    },
+    legend: {
+      textStyle: {
+        color: '#666',
+        fontSize: 12
+      },
+      icon: 'rect',
+      right: 0,
+      itemWidth: 20,
+      itemHeight: 10,
+      itemGap: 10
+    }
   }
 }
