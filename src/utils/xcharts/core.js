@@ -1,8 +1,9 @@
 /*
+ * @Description: x-charts 核心入口文件
  * @Author: pdeng
- * @Date: 2019-10-14 22:31:15
- * @Last Modified by: pdeng
- * @Last Modified time: 2019-10-16 22:55:28
+ * @Date: 2019-10-16 19:54:06
+ * @LastEditTime: 2019-10-16 23:16:45
+ * @LastEditors: Please set LastEditors
  */
 import Echarts from 'echarts'
 import { deepMerge } from '@/utils/'

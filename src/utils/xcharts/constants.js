@@ -1,3 +1,10 @@
+/*
+ * @Description: x-charts 基础 options 通用设置
+ * @Author: pdeng
+ * @Date: 2019-10-16 19:54:06
+ * @LastEditTime: 2019-10-16 23:17:50
+ * @LastEditors: Please set LastEditors
+ */
 // export const DEFAULT_COLORS = [
 //   '#19d4ae',
 //   '#5ab1ef',

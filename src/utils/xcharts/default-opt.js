@@ -1,4 +1,10 @@
-import { DEFAULT_THEME, LINE_TEXT_COLOR } from './constants'
+/*
+ * @Description: 各图表默认的 options 配置文件
+ * @Author: pdeng
+ * @Date: 2019-10-16 19:54:06
+ * @LastEditTime: 2019-10-16 23:16:03
+ * @LastEditors: Please set LastEditors
+ */
 import { deepMerge } from '@/utils'
 export default {
   line: () => {
@@ -150,7 +156,6 @@ export default {
       },
       series: [
         {
-          name: '访问来源',
           type: 'pie',
           radius: [0, '80%'],
           label: {

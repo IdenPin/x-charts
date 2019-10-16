@@ -1,3 +1,10 @@
+/*
+ * @Description: 实现 option 于 data 的拼装
+ * @Author: pdeng
+ * @Date: 2019-10-16 19:54:06
+ * @LastEditTime: 2019-10-16 23:18:47
+ * @LastEditors: Please set LastEditors
+ */
 import { MockData } from '@/utils'
 export default {
   line(
