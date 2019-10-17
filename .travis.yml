@@ -1,0 +1,35 @@
+language: node_js #设置语言
+
+node_js: "10.16.3" #设置语言版本
+
+cache:
+  directories:
+    - node_modules #缓存依赖
+
+# S: Build Lifecycle
+install:
+  - npm i
+
+script:
+  - npm run build
+
+# after_script前5句是把部署分支的.git文件夹保护起来，用于保留历史部署的commit日志，否则部署分支永远只有一条commit记录。
+#命令里面的变量都是在Travis CI里配置过的。
+after_script:
+  - git clone https://github.com/IdenPin/x-charts.git .temp
+  - cd .temp
+  - git checkout gh-pages
+  - cd ../
+  - mv .temp/.git dist
+  - cd dist
+  - git config user.name "IdenPin"
+  - git config user.email "635639654@qq.com"
+  - git add .
+  - git commit -m ":construction_worker:- Build & Deploy by Travis CI"
+  - git push --force --quiet "https://03b1fade9d1c11e25c6be5c7fd2fdc102fedf022@IdenPin" gh-pages:${D_BRANCH}
+# E: Build LifeCycle
+
+# 只有指定的分支提交时才会运行脚本
+branches:
+  only:
+    - master
