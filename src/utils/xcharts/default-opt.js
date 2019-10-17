@@ -2,10 +2,11 @@
  * @Description: 各图表默认的 options 配置文件
  * @Author: pdeng
  * @Date: 2019-10-16 19:54:06
- * @LastEditTime: 2019-10-16 23:16:03
+ * @LastEditTime: 2019-10-17 10:13:48
  * @LastEditors: Please set LastEditors
  */
 import { deepMerge } from '@/utils'
+import { DEFAULT_THEME, LINE_TEXT_COLOR } from '@/utils/xcharts/constants'
 export default {
   line: () => {
     return Object.assign({}, DEFAULT_THEME(), {
