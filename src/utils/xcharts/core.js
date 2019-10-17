@@ -1,16 +1,22 @@
 /*
+ * @Description: x-charts 核心入口文件
  * @Author: pdeng
- * @Date: 2019-10-14 22:31:15
- * @Last Modified by: pdeng
- * @Last Modified time: 2019-10-16 00:10:00
+ * @Date: 2019-10-16 19:54:06
+ * @LastEditTime: 2019-10-16 23:16:45
+ * @LastEditors: Please set LastEditors
  */
 import Echarts from 'echarts'
 import { deepMerge } from '@/utils/'
 import DefaultOpt from './default-opt'
+import OptionDataBundle from './optionDataBundle'
+// import pieOptionDataBundle from './optionDataBundle/pie'
 class Xcharts {
-  constructor(el, chartType, opt = {}) {
+  constructor(el, type, opt = {}) {
+    // 承载容器的 dom
     this.el = el
-    this.chartType = chartType
+    // 图表类型
+    this.type = type.toLocaleLowerCase()
+    // 用户传入图片配置
     this.opt = opt
 
     // 实例化图表
@@ -25,7 +31,7 @@ class Xcharts {
       console.error('图表初始化dom未填写 ~')
       return
     }
-    if (!this.chartType) {
+    if (!this.type) {
       console.error('图表类型位置设 ~')
       return
     }
@@ -34,54 +40,16 @@ class Xcharts {
   }
   // 1. 合并 defaultOpt 与 opt
   optionsHandler() {
-    // 注意 一定要使用 object.assign 赋值给一个新对象
-    this.mergeOpt = Object.assign(
-      {},
-      deepMerge(this.opt, DefaultOpt[this.chartType])
-    )
-    console.log('this.mergeOpt', this.mergeOpt)
+    this.mergeOpt = deepMerge(DefaultOpt[this.type](), this.opt)
+    if (this.type === 'pie') {
+      console.log(this.mergeOpt)
+    }
   }
   // ==》用户触发-接受外面传递的 data
+  // 2. 拆分 options 中的 data 再拼装
   setData(data) {
-    this.optionDataBundle(data)
+    OptionDataBundle[this.type].call(this, data)
     return this
-  }
-  // 2. 组合 option 与 data
-  optionDataBundle({ legendData, rows, columns }) {
-    this.mergeOpt.legend.data = legendData
-    this.mergeOpt.xAxis.data = columns
-
-    // 根据传入的 legend 判断图表是 几个纬度
-    // 根据 legend length 判断数组长度
-    if (Array.isArray(legendData) && legendData.length === 1) {
-      this.mergeOpt.series = [
-        Object.assign(
-          {
-            name: legendData[0],
-            data: rows
-          },
-          this.mergeOpt.series[0]
-        )
-      ]
-    } else {
-      // 多个维度 对应多个 legend
-      const seriesArr = []
-      for (var i = 0; i < legendData.length; i++) {
-        // 将拆分后的 data 和 name 于传入的 series 其它属性合并
-        seriesArr.push(
-          Object.assign(
-            {
-              name: legendData[i],
-              data: rows[i]
-            },
-            this.mergeOpt.series[0]
-          )
-        )
-      }
-      console.log('seriesArr--->', seriesArr)
-      this.mergeOpt.series = seriesArr
-    }
-    this.render()
   }
   // 3. 渲染图表
   render() {
