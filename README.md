@@ -1,4 +1,4 @@
-# x-charts
+# x-charts        ![https://travis-ci.com/IdenPin/x-charts.svg?branch=master](https://travis-ci.com/IdenPin/x-charts.svg?branch=master)   ![https://img.shields.io/github/license/IdenPin/x-charts](https://img.shields.io/github/license/IdenPin/x-charts)
 
 ## 特性
 - 0 配置（简化繁琐的 options 配置）
