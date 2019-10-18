@@ -9,7 +9,6 @@ import Echarts from 'echarts'
 import { deepMerge } from '@/utils/'
 import DefaultOpt from './default-opt'
 import OptionDataBundle from './optionDataBundle'
-// import pieOptionDataBundle from './optionDataBundle/pie'
 class Xcharts {
   constructor(el, type, opt = {}) {
     // 承载容器的 dom
@@ -41,9 +40,6 @@ class Xcharts {
   // 1. 合并 defaultOpt 与 opt
   optionsHandler() {
     this.mergeOpt = deepMerge(DefaultOpt[this.type](), this.opt)
-    if (this.type === 'pie') {
-      console.log(this.mergeOpt)
-    }
   }
   // ==》用户触发-接受外面传递的 data
   // 2. 拆分 options 中的 data 再拼装

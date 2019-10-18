@@ -173,5 +173,36 @@ export default {
         }
       ]
     })
+  },
+  radar: () => {
+    return deepMerge(DEFAULT_THEME(), {
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        orient: 'vertical',
+        x: 'left'
+      },
+      radar: {
+        // shape: 'circle',
+        name: {
+          textStyle: {
+            color: LINE_TEXT_COLOR.textStyle,
+            // backgroundColor: '',
+            borderRadius: 3,
+            padding: [3, 5]
+          }
+        },
+        indicator: []
+      },
+      series: [
+        {
+          areaStyle: {
+            normal: {}
+          },
+          type: 'radar'
+        }
+      ]
+    })
   }
 }

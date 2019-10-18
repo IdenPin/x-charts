@@ -114,18 +114,13 @@ new Xcharts('chart3', 'line', {
   columns: MockData.dateTime('2010-3-1', 1500),
   rows: data
 })`
-        },
-        {
-          title: '测试',
-          code: '123'
         }
       ],
       codeView: '',
       chart0: null,
       chart1: null,
       chart2: null,
-      chart3: null,
-      chart4: null
+      chart3: null
     }
   },
   mounted() {
@@ -215,7 +210,6 @@ new Xcharts('chart3', 'line', {
         columns: MockData.dateTime('2010-3-1', 1500),
         rows: data
       })
-      this.chart4 = new Xcharts('chart4', 'pie').setData()
     },
     openDialog(i) {
       this.codeView = this.items[i].code

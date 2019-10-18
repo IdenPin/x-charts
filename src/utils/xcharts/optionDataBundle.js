@@ -106,7 +106,48 @@ export default {
       // 二位数组
       const series = []
       columns.forEach((v, i) => {
-        console.log('0000000', this.mergeOpt)
+        // this.mergeOpt.series[i] || this.mergeOpt.series[0]
+        this.mergeOpt.series[i].data = v
+        series.push(this.mergeOpt.series[i])
+      })
+      this.mergeOpt.series = series
+    } else {
+      this.mergeOpt.series[0].data = columns
+    }
+    this.render()
+  },
+  radar(
+    data = {
+      legendData: ['预算分配', '实际开销'],
+      columns: [
+        {
+          value: [4300, 10000, 28000, 35000, 50000, 19000],
+          name: '预算分配'
+        },
+        {
+          value: [5000, 14000, 28000, 31000, 42000, 21000],
+          name: '实际开销'
+        }
+      ],
+      rows: [
+        { name: '销售（sales）', max: 6500 },
+        { name: '管理（Administration）', max: 16000 },
+        { name: '信息技术（Techology）', max: 30000 },
+        { name: '客服（Customer', max: 38000 },
+        { name: '研发（Development）', max: 52000 },
+        { name: '市场（Marketing）', max: 25000 }
+      ]
+    }
+  ) {
+    const { rows, columns, legendData } = data
+    this.mergeOpt.legend.data = legendData
+    this.mergeOpt.radar.indicator = rows
+    console.log('data', data)
+    // 判断传入的 columns 是否为二位数组，决定是否渲染嵌套
+    if (columns.some(v => Array.isArray(v))) {
+      // 二位数组
+      const series = []
+      columns.forEach((v, i) => {
         // this.mergeOpt.series[i] || this.mergeOpt.series[0]
         this.mergeOpt.series[i].data = v
         series.push(this.mergeOpt.series[i])
