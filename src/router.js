@@ -25,6 +25,16 @@ export default new Router({
       path: '/radar',
       name: 'Radar',
       component: () => import('./views/Radar')
+    },
+    {
+      path: '/scatter',
+      name: 'Scatter',
+      component: () => import('./views/Scatter')
+    },
+    {
+      path: '/tree',
+      name: 'Tree',
+      component: () => import('./views/Tree')
     }
   ]
 })

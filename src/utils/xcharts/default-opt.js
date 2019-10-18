@@ -204,5 +204,73 @@ export default {
         }
       ]
     })
+  },
+  scatter: () => {
+    return deepMerge(DEFAULT_THEME(), {
+      legend: {
+        icon: 'circle',
+        itemWidth: 15,
+        itemHeight: 15
+      },
+      xAxis: {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: LINE_TEXT_COLOR.textStyle,
+            fontSize: 12
+          },
+          rotate: 0
+        },
+        // x轴刻度
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: LINE_TEXT_COLOR.lineStyle,
+            width: 2
+          }
+        },
+        // 网格
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: LINE_TEXT_COLOR.lineStyle,
+            type: 'dashed'
+          }
+        }
+      },
+      yAxis: {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: LINE_TEXT_COLOR.textStyle,
+            fontSize: 12
+          },
+          rotate: 0
+        },
+        // x轴刻度
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: LINE_TEXT_COLOR.lineStyle,
+            width: 2
+          }
+        },
+        // 网格
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: LINE_TEXT_COLOR.lineStyle,
+            type: 'dashed'
+          }
+        },
+        scale: true
+      },
+      series: [
+        {
+          symbolSize: 20,
+          type: 'scatter'
+        }
+      ]
+    })
   }
 }

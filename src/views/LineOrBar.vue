@@ -127,13 +127,6 @@ new Xcharts('chart3', 'line', {
     this.renderCharts()
     this.chartResize()
   },
-  beforeDestroy() {
-    window.removeEventListener('resize', null)
-    this.chart0.chart && this.chart0.chart.dispose()
-    this.chart1.chart && this.chart1.chart.dispose()
-    this.chart2.chart && this.chart2.chart.dispose()
-    this.chart3.chart && this.chart3.chart.dispose()
-  },
   methods: {
     renderCharts() {
       // 图1
@@ -216,15 +209,20 @@ new Xcharts('chart3', 'line', {
       this.dialogVisible = true
     },
     chartResize() {
-      window.addEventListener(
-        'resize',
-        _.debounce(() => {
-          this.chart0.chart && this.chart0.chart.resize()
-          this.chart1.chart && this.chart1.chart.resize()
-          this.chart2.chart && this.chart2.chart.resize()
-          this.chart3.chart && this.chart3.chart.resize()
-        })
-      )
+      this.handlerResize = _.debounce(() => {
+        this.chart0.chart && this.chart0.chart.resize()
+        this.chart1.chart && this.chart1.chart.resize()
+        this.chart2.chart && this.chart2.chart.resize()
+        this.chart3.chart && this.chart3.chart.resize()
+      })
+      window.addEventListener('resize', this.handlerResize)
+      this.$once('hook:beforeDestroy', () => {
+        window.removeEventListener('resize', this.handlerResize)
+        this.chart0.chart && this.chart0.chart.dispose()
+        this.chart1.chart && this.chart1.chart.dispose()
+        this.chart2.chart && this.chart2.chart.dispose()
+        this.chart3.chart && this.chart3.chart.dispose()
+      })
     }
   }
 }

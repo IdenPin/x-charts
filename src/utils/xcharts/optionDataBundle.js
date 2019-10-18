@@ -17,7 +17,7 @@ export default {
     const { legendData, rows, columns } = data
     this.mergeOpt.legend.data = legendData
     this.mergeOpt.xAxis.data = columns
-    // 根据传入的 legend 判断图表是 几个纬度
+    // 根据传入的 legend 判断图表有几个纬度
     // 根据 legend length 判断数组长度
     if (Array.isArray(legendData) && legendData.length === 1) {
       this.mergeOpt.series = [
@@ -101,9 +101,9 @@ export default {
   ) {
     const { legendData, columns } = data
     this.mergeOpt.legend.data = legendData
-    // 判断传入的 columns 是否为二位数组，决定是否渲染嵌套 pie
+    // 判断传入的 columns 是否为二维数组，决定是否渲染嵌套 pie
     if (columns.some(v => Array.isArray(v))) {
-      // 二位数组
+      // 二维数组
       const series = []
       columns.forEach((v, i) => {
         // this.mergeOpt.series[i] || this.mergeOpt.series[0]
@@ -142,10 +142,9 @@ export default {
     const { rows, columns, legendData } = data
     this.mergeOpt.legend.data = legendData
     this.mergeOpt.radar.indicator = rows
-    console.log('data', data)
-    // 判断传入的 columns 是否为二位数组，决定是否渲染嵌套
+    // 判断传入的 columns 是否为二维数组，决定是否渲染嵌套
     if (columns.some(v => Array.isArray(v))) {
-      // 二位数组
+      // 二维数组
       const series = []
       columns.forEach((v, i) => {
         // this.mergeOpt.series[i] || this.mergeOpt.series[0]
@@ -156,6 +155,84 @@ export default {
     } else {
       this.mergeOpt.series[0].data = columns
     }
+    this.render()
+  },
+  scatter(
+    data = {
+      legendData: ['2019'],
+      rows: [
+        [10.0, 8.04],
+        [8.0, 6.95],
+        [13.0, 7.58],
+        [9.0, 8.81],
+        [11.0, 8.33],
+        [14.0, 9.96],
+        [6.0, 7.24],
+        [4.0, 4.26],
+        [12.0, 10.84],
+        [7.0, 4.82],
+        [5.0, 5.68]
+      ]
+    }
+  ) {
+    const { rows, legendData, ecStat = {}} = data
+    this.mergeOpt.legend.data = legendData
+    // 通过传入的 legendData 判断数据是几个纬度
+    if (this.mergeOpt.legend.data.length > 1) {
+      // 多个纬度
+      const series = []
+      rows.forEach((v, i) => {
+        const foo = Object.assign(
+          {},
+          this.mergeOpt.series[0],
+          this.mergeOpt.series[i]
+        )
+        // 赋值 data
+        foo.data = v
+        // 赋值 legend name
+        foo.name = legendData[i]
+        series.push(foo)
+      })
+      this.mergeOpt.series = series
+    } else {
+      // 一个纬度
+      this.mergeOpt.series[0].data = rows
+      this.mergeOpt.series[0].name = legendData[0]
+    }
+    if (JSON.stringify(ecStat) !== '{}') {
+      this.mergeOpt.series.push({
+        name: 'line',
+        type: 'line',
+        lineStyle: {
+          normal: {
+            color: '#2f4554'
+          }
+        },
+        smooth: true,
+        showSymbol: false,
+        data: ecStat.formula && ecStat.formula.points,
+        markPoint: {
+          itemStyle: {
+            normal: {
+              color: 'transparent'
+            }
+          },
+          label: {
+            normal: {
+              show: true,
+              position: 'left',
+              formatter: ecStat.formula && ecStat.formula.expression,
+              textStyle: {
+                color: '#333',
+                fontSize: 14
+              }
+            }
+          },
+          data: ecStat.data
+        }
+      })
+    }
+    console.log('this.mergeOpt', this.mergeOpt)
     this.render()
   }
 }
