@@ -66,11 +66,11 @@ export default {
 })`
         },
         {
-          title: 'circle 雷达图',
+          title: 'Circle 雷达图',
           code: `this.chart1 = new Xcharts('chart1', 'radar').setData()`
         },
         {
-          title: 'areaStyle 雷达图',
+          title: 'AreaStyle 雷达图',
           code: `this.chart2 = new Xcharts('chart2', 'radar', {
   series: [
     {
