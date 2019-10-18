@@ -14,13 +14,21 @@ export function deepMerge(obj1, obj2) {
 // 数据生成
 export const MockData = {
   array(len, slice = -2) {
-    return Array.from({ length: len }, (_, index) => {
-      return Number(
-        Math.random()
-          .toString()
-          .slice(slice)
+    if (Array.isArray(slice)) {
+      const [min, max] = slice
+      return Array.from(
+        { length: len },
+        () => Math.floor(Math.random() * (max - min + 1)) + min
       )
-    })
+    } else {
+      return Array.from({ length: len }, (_, index) => {
+        return Number(
+          Math.random()
+            .toString()
+            .slice(slice)
+        )
+      })
+    }
   },
   date(len, type) {
     return Array.from({ length: len }, (_, index) => {
