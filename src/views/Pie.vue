@@ -1,17 +1,24 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-17 09:59:49
+ * @LastEditTime: 2019-10-18 10:22:29
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="pie-chart">
     <el-main>
       <el-card
         v-for="(v,i) in items"
         :key="i"
-        style="margin: 1%;box-sizing:border-box;width: 48%;float:left"
+        style="margin:1%;box-sizing:border-box;width: 48%;float:left"
       >
         <div slot="header" class="clearfix">
           <span>{{ v.title }}</span>
           <el-button style="float: right; padding: 3px 0" type="text" @click="openDialog(i)">查看源码</el-button>
         </div>
         <div class="text item">
-          <div :id="`chart${i}`" style="width: 100%;height:200px" />
+          <div :id="`chart${i}`" style="width: 100%;height:280px" />
         </div>
       </el-card>
     </el-main>
@@ -139,35 +146,19 @@ this.chart0 = new Xcharts('chart0', 'pie').setData({
   },
   methods: {
     renderCharts() {
-      const legendData = [
-        '直接访问',
-        '邮件营销',
-        '联盟广告',
-        '视频广告',
-        '搜索引擎'
-      ]
+      const legendData = ['直接访问', '联盟广告', '视频广告', '搜索引擎']
       const columns = [
         { value: 335, name: '直接访问' },
-        { value: 310, name: '邮件营销' },
         { value: 234, name: '联盟广告' },
         { value: 135, name: '视频广告' },
         { value: 548, name: '搜索引擎' }
       ]
       // 图1
       this.chart0 = new Xcharts('chart0', 'pie').setData({
-        legendData: [
-          '直接访问',
-          '邮件营销',
-          '联盟广告',
-          '视频广告',
-          '搜索引擎'
-        ],
+        legendData: ['邮件营销', '联盟广告'],
         columns: [
-          { value: 335, name: '直接访问' },
           { value: 310, name: '邮件营销' },
-          { value: 234, name: '联盟广告' },
-          { value: 135, name: '视频广告' },
-          { value: 1548, name: '搜索引擎' }
+          { value: 234, name: '联盟广告' }
         ]
       })
       // 图2
