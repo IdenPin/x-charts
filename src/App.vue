@@ -8,9 +8,12 @@
       @select="handleSelect"
     >
       <el-menu-item index="/">首页</el-menu-item>
-      <el-menu-item index="/lineOrBar">折线图 \ 柱状图</el-menu-item>
+      <el-menu-item index="/lineOrBar">折线图 / 柱状图</el-menu-item>
       <el-menu-item index="/pie">饼图</el-menu-item>
       <el-menu-item index="/radar">雷达图</el-menu-item>
+      <el-menu-item index="/scatter">散点图</el-menu-item>
+      <el-menu-item index="/tree" disabled>树形图</el-menu-item>
+      <el-menu-item index="/map" disabled>GEO / Map</el-menu-item>
       <!-- <el-submenu index="3">
         <template slot="title">我的工作台</template>
         <el-menu-item index="3-1">选项1</el-menu-item>

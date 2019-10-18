@@ -101,9 +101,9 @@ export default {
   ) {
     const { legendData, columns } = data
     this.mergeOpt.legend.data = legendData
-    // 判断传入的 columns 是否为二位数组，决定是否渲染嵌套 pie
+    // 判断传入的 columns 是否为二维数组，决定是否渲染嵌套 pie
     if (columns.some(v => Array.isArray(v))) {
-      // 二位数组
+      // 二维数组
       const series = []
       columns.forEach((v, i) => {
         // this.mergeOpt.series[i] || this.mergeOpt.series[0]
@@ -142,10 +142,9 @@ export default {
     const { rows, columns, legendData } = data
     this.mergeOpt.legend.data = legendData
     this.mergeOpt.radar.indicator = rows
-    console.log('data', data)
-    // 判断传入的 columns 是否为二位数组，决定是否渲染嵌套
+    // 判断传入的 columns 是否为二维数组，决定是否渲染嵌套
     if (columns.some(v => Array.isArray(v))) {
-      // 二位数组
+      // 二维数组
       const series = []
       columns.forEach((v, i) => {
         // this.mergeOpt.series[i] || this.mergeOpt.series[0]
@@ -156,6 +155,53 @@ export default {
     } else {
       this.mergeOpt.series[0].data = columns
     }
+    this.render()
+  },
+  scatter(
+    data = {
+      rows: [
+        [
+          [1.0, 8.04],
+          [8.0, 6.95],
+          [13.0, 7.58],
+          [9.0, 8.81],
+          [11.0, 8.33],
+          [14.0, 9.96],
+          [6.0, 7.24],
+          [4.0, 4.26],
+          [12.0, 10.84],
+          [7.0, 4.82],
+          [5.0, 5.68]
+        ],
+        [
+          [2.0, 8.04],
+          [8.0, 6.95],
+          [13.0, 7.58],
+          [9.0, 8.81],
+          [11.0, 8.33],
+          [14.0, 9.96],
+          [6.0, 7.24],
+          [4.0, 4.26],
+          [12.0, 10.84],
+          [7.0, 4.82],
+          [5.0, 5.68]
+        ]
+      ]
+    }
+  ) {
+    const { rows, legendData } = data
+    this.mergeOpt.legend.data = legendData
+
+    const series = []
+    rows.forEach((v, i) => {
+      if (!this.mergeOpt.series[i]) {
+        this.mergeOpt.series[i] = this.mergeOpt.series[0]
+      }
+      this.mergeOpt.series[i].data = v
+      series.push(this.mergeOpt.series[i])
+    })
+    console.log('series', series)
+    this.mergeOpt.series = series
     this.render()
   }
 }
