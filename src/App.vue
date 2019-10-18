@@ -10,7 +10,7 @@
       <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="/lineOrBar">折线图 \ 柱状图</el-menu-item>
       <el-menu-item index="/pie">饼图</el-menu-item>
-      <el-menu-item index="/radar" disabled>雷达图</el-menu-item>
+      <el-menu-item index="/radar">雷达图</el-menu-item>
       <!-- <el-submenu index="3">
         <template slot="title">我的工作台</template>
         <el-menu-item index="3-1">选项1</el-menu-item>
@@ -36,6 +36,11 @@ export default {
 }
 </script>
 <style lang="scss">
+html,
+body {
+  margin: 0;
+  background-color: #f1f1f1;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
