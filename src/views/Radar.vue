@@ -167,7 +167,7 @@ rows: [
   },
   mounted() {
     this.renderCharts()
-    // this.chartResize()
+    this.chartResize()
   },
   beforeDestroy() {
     window.removeEventListener('resize', null)
