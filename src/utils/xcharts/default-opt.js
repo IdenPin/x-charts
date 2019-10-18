@@ -207,6 +207,11 @@ export default {
   },
   scatter: () => {
     return deepMerge(DEFAULT_THEME(), {
+      legend: {
+        icon: 'circle',
+        itemWidth: 15,
+        itemHeight: 15
+      },
       xAxis: {
         axisLabel: {
           show: true,
@@ -262,6 +267,7 @@ export default {
       },
       series: [
         {
+          symbolSize: 20,
           type: 'scatter'
         }
       ]
