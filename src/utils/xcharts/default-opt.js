@@ -6,7 +6,7 @@
  * @LastEditors: Please set LastEditors
  */
 import { deepMerge } from '@/utils'
-import { DEFAULT_THEME, LINE_TEXT_COLOR } from '@/utils/xcharts/constants'
+import { DEFAULT_THEME, OBJECT_COLORS } from '@/utils/xcharts/constants'
 export default {
   line: () => {
     return Object.assign({}, DEFAULT_THEME(), {
@@ -19,7 +19,7 @@ export default {
         axisLabel: {
           show: true,
           textStyle: {
-            color: LINE_TEXT_COLOR.textStyle,
+            color: OBJECT_COLORS.textStyle,
             fontSize: 12
           },
           rotate: 0
@@ -28,7 +28,7 @@ export default {
         axisLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             width: 2
           }
         },
@@ -36,7 +36,7 @@ export default {
         splitLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             type: 'dashed'
           }
         }
@@ -47,7 +47,7 @@ export default {
         axisLabel: {
           show: true,
           textStyle: {
-            color: LINE_TEXT_COLOR.textStyle,
+            color: OBJECT_COLORS.textStyle,
             fontSize: 14
           }
         },
@@ -55,7 +55,7 @@ export default {
         axisLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             width: 2 // 这里是坐标轴的宽度
           }
         },
@@ -63,7 +63,7 @@ export default {
         splitLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             type: 'solid'
           }
         }
@@ -88,7 +88,7 @@ export default {
         axisLabel: {
           show: true,
           textStyle: {
-            color: LINE_TEXT_COLOR.textStyle,
+            color: OBJECT_COLORS.textStyle,
             fontSize: 12
           },
           rotate: 0
@@ -97,7 +97,7 @@ export default {
         axisLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             width: 2
           }
         },
@@ -105,7 +105,7 @@ export default {
         splitLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             type: 'dashed'
           }
         }
@@ -116,7 +116,7 @@ export default {
         axisLabel: {
           show: true,
           textStyle: {
-            color: LINE_TEXT_COLOR.textStyle,
+            color: OBJECT_COLORS.textStyle,
             fontSize: 14
           }
         },
@@ -124,7 +124,7 @@ export default {
         axisLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             width: 2 // 这里是坐标轴的宽度
           }
         },
@@ -132,7 +132,7 @@ export default {
         splitLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             type: 'solid'
           }
         }
@@ -187,7 +187,7 @@ export default {
         // shape: 'circle',
         name: {
           textStyle: {
-            color: LINE_TEXT_COLOR.textStyle,
+            color: OBJECT_COLORS.textStyle,
             // backgroundColor: '',
             borderRadius: 3,
             padding: [3, 5]
@@ -216,7 +216,7 @@ export default {
         axisLabel: {
           show: true,
           textStyle: {
-            color: LINE_TEXT_COLOR.textStyle,
+            color: OBJECT_COLORS.textStyle,
             fontSize: 12
           },
           rotate: 0
@@ -225,7 +225,7 @@ export default {
         axisLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             width: 2
           }
         },
@@ -233,7 +233,7 @@ export default {
         splitLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             type: 'dashed'
           }
         }
@@ -242,7 +242,7 @@ export default {
         axisLabel: {
           show: true,
           textStyle: {
-            color: LINE_TEXT_COLOR.textStyle,
+            color: OBJECT_COLORS.textStyle,
             fontSize: 12
           },
           rotate: 0
@@ -251,7 +251,7 @@ export default {
         axisLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             width: 2
           }
         },
@@ -259,7 +259,7 @@ export default {
         splitLine: {
           show: true,
           lineStyle: {
-            color: LINE_TEXT_COLOR.lineStyle,
+            color: OBJECT_COLORS.lineStyle,
             type: 'dashed'
           }
         },

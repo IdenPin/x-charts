@@ -53,9 +53,12 @@ export const DEFAULT_COLORS = [
   '#948803'
 ]
 
-export const LINE_TEXT_COLOR = {
+export const OBJECT_COLORS = {
   textStyle: '#666',
-  lineStyle: '#EBECF0'
+  lineStyle: '#EBECF0',
+  loadingColor: '#409EFF',
+  loadingTextColor: '#fff',
+  loadingMaskColor: 'rgba(255, 255, 255, 0.8)'
 }
 
 export const HEAT_MAP_COLOR = [
@@ -151,5 +154,21 @@ export function DEFAULT_THEME() {
       itemHeight: 10,
       itemGap: 10
     }
+  }
+}
+
+export function LOADING_STYLE(data) {
+  const {
+    text = '',
+    color = OBJECT_COLORS.loadingColor,
+    textColor = OBJECT_COLORS.loadingTextColor,
+    maskColor = OBJECT_COLORS.loadingMaskColor
+  } = data || {}
+  return {
+    text,
+    color,
+    textColor,
+    maskColor,
+    effect: 'whirling'
   }
 }

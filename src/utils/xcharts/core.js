@@ -8,6 +8,7 @@
 import Echarts from 'echarts'
 import { deepMerge } from '@/utils/'
 import DefaultOpt from './default-opt'
+import { LOADING_STYLE } from './constants'
 import OptionDataBundle from './optionDataBundle'
 class Xcharts {
   constructor(el, type, opt = {}) {
@@ -35,6 +36,9 @@ class Xcharts {
       return
     }
     this.chart = Echarts.init(document.querySelector(`#${this.el}`))
+    // 添加 loading
+    this.chart.showLoading(LOADING_STYLE())
+    // 处理 option
     this.optionsHandler()
   }
   // 1. 合并 defaultOpt 与 opt
@@ -44,6 +48,7 @@ class Xcharts {
   // ==》用户触发-接受外面传递的 data
   // 2. 拆分 options 中的 data 再拼装
   setData(data) {
+    this.chart.hideLoading()
     OptionDataBundle[this.type].call(this, data)
     return this
   }
