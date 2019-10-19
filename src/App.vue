@@ -12,14 +12,14 @@
       <el-menu-item index="/pie">饼图</el-menu-item>
       <el-menu-item index="/radar">雷达图</el-menu-item>
       <el-menu-item index="/scatter">散点图</el-menu-item>
-      <el-menu-item index="/tree" disabled>树形图</el-menu-item>
-      <el-menu-item index="/map" disabled>GEO / Map</el-menu-item>
-      <!-- <el-submenu index="3">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="3-1">选项1</el-menu-item>
-        <el-menu-item index="3-2">选项2</el-menu-item>
-        <el-menu-item index="3-3">选项3</el-menu-item>
-      </el-submenu>-->
+      <el-menu-item index="/tree" disabled>...</el-menu-item>
+      <el-submenu index="/geo">
+        <template slot="title">GEO / Map</template>
+        <el-menu-item index="/geo/china">地图展示</el-menu-item>
+        <el-menu-item index="/geo/choose">地市框选</el-menu-item>
+        <el-menu-item index="/geo/basin">流域地图</el-menu-item>
+        <el-menu-item index="/geo/runInHole">省市区三级下钻</el-menu-item>
+      </el-submenu>
     </el-menu>
     <router-view />
   </div>
