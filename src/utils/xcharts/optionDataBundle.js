@@ -238,19 +238,23 @@ export default {
   },
   map(
     data = {
+      visualMap: [0, 100],
       rows: Array.from(
         { length: Object.keys(MAP_PROVINCES).length },
         (_, index) => {
           return {
             name: Object.keys(MAP_PROVINCES)[index],
-            value: Math.floor(Math.random() * 500) + 1
+            value: Math.floor(Math.random() * 100) + 1
           }
         }
       )
     }
   ) {
-    const { rows } = data
+    const { rows, visualMap } = data
+    const [min, max] = visualMap
     this.mergeOpt.series[0].data = rows
+    this.mergeOpt.visualMap.min = min
+    this.mergeOpt.visualMap.max = max
     console.log('this.mergeOpt', this.mergeOpt)
     this.render()
   }

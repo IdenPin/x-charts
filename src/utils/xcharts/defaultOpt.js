@@ -304,8 +304,6 @@ export default {
         itemHeight: 55,
         text: ['高', '低'],
         showLabel: true,
-        min: 0,
-        max: 500,
         inRange: {
           color: ['#f5f7ff', '#889ef7', '#5781FD']
           // color: ['#e4f2dc', '#cde8bc', '#a3ea77', '#90d764', '#68b837']
