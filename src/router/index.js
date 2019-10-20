@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home'
+import Chart from './chart'
 import Geo from './geo'
+import Home from '@/views/Home'
 
 Vue.use(Router)
 
@@ -12,31 +13,9 @@ export default new Router({
       name: 'Home',
       component: Home
     },
-    {
-      path: '/lineOrBar',
-      name: 'LineOrBar',
-      component: () => import('@/views/LineOrBar')
-    },
-    {
-      path: '/pie',
-      name: 'Pie',
-      component: () => import('@/views/Pie')
-    },
-    {
-      path: '/radar',
-      name: 'Radar',
-      component: () => import('@/views/Radar')
-    },
-    {
-      path: '/scatter',
-      name: 'Scatter',
-      component: () => import('@/views/Scatter')
-    },
-    {
-      path: '/tree',
-      name: 'Tree',
-      component: () => import('../views/Tree')
-    },
+    // 图表类
+    ...Chart,
+    // 地图类
     Geo
   ]
 })
