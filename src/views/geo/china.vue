@@ -5,7 +5,7 @@
         <span>中国地图</span>
       </div>
       <div class="text item">
-        <div id="china-map" style="width:100%;height:800" />
+        <div id="china-map" style="width:100%;height:800px" />
       </div>
     </el-card>
   </el-main>
