@@ -1,27 +1,27 @@
 export default {
   path: '/geo',
   name: 'Geo',
-  component: () => import('@/views/geo'),
+  component: () => import('@/components/Node'),
   children: [
     {
       path: 'china',
       name: 'China',
-      component: () => import('@/views/geo/china')
+      component: () => import('@/views/geo/China')
     },
     {
       path: 'basin',
       name: 'Basin',
-      component: () => import('@/views/geo/basin')
+      component: () => import('@/views/geo/Basin')
     },
     {
       path: 'choose',
       name: 'Choose',
-      component: () => import('@/views/geo/choose')
+      component: () => import('@/views/geo/Choose')
     },
     {
       path: 'runInHole',
       name: 'RunInHole',
-      component: () => import('@/views/geo/runInHole')
+      component: () => import('@/views/geo/RunInHole')
     }
   ]
 }
