@@ -49,12 +49,6 @@ export default {
       zMapLevel: 0,
       // 地图资源 json
       sourceJson: [],
-      // 将 index 和 this.dataKey 关联
-      dataKey : {
-        0: 'china',
-        1: 'MAP_PROVINCES',
-        2: 'MAP_CITY',
-      },
       mapCrumb: [
         {
           name: '全国',
@@ -152,7 +146,7 @@ export default {
           visualMap: [0, 1000],
           map: this.mapName,
           rows: Array.from(
-            { length: Object.keys(this.dataKey[this.zMapLevel]).length },
+            { length: currentMapItem.length },
             (_, index) => {
               return {
                 name: currentMapItem[index],
@@ -179,7 +173,7 @@ export default {
           visualMap: [0, 1000],
           map: this.mapName,
           rows: Array.from(
-            { length: this.dataKey[this.zMapLevel] === 'china' ? currentMapItem.length : Object.keys(this.dataKey[this.zMapLevel]).length },
+            { length: currentMapItem.length },
             (_, index) => {
               return {
                 name: currentMapItem[index],
