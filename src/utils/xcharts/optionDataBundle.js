@@ -250,13 +250,15 @@ export default {
       )
     }
   ) {
-    const { rows, visualMap, center, zoom } = data
+    const { rows, visualMap, center, zoom, map } = data
     const [vMin, vMax] = visualMap
     this.mergeOpt.series[0].data = rows
     this.mergeOpt.series[0].center = center
     this.mergeOpt.series[0].zoom = zoom
+    this.mergeOpt.series[0].map = map
     this.mergeOpt.visualMap.min = vMin
     this.mergeOpt.visualMap.max = vMax
+
     console.log('this.mergeOpt', this.mergeOpt)
     this.render()
   }
