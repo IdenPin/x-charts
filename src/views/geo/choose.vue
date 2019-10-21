@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       cityMap: null,
+      mapName: '',
       areaCityValue: 0,
       areaCityList: [
         {
@@ -81,6 +82,7 @@ export default {
     this.renderChart({
       visualMap: [0, 1000],
       center: this.centerCoord,
+      map: this.mapName,
       zoom: 1,
       rows: Array.from({ length: Object.keys(MAP_CITY).length }, (_, index) => {
         return {
@@ -106,8 +108,9 @@ export default {
         ]
       })
       // 注入地图 json
+      this.mapName = 'allCity'
       this.cityMap.Echarts.registerMap(
-        'china',
+        this.mapName,
         require('@/utils/xcharts/data/map/allCity.min.json')
       )
     },
@@ -132,6 +135,7 @@ export default {
         visualMap: [0, 1000],
         center: this.centerCoord,
         zoom: !v ? 1 : 5,
+        map: this.mapName,
         rows: Array.from(
           { length: Object.keys(MAP_CITY).length },
           (_, index) => {
