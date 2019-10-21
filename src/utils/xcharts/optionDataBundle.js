@@ -247,7 +247,9 @@ export default {
             value: Math.floor(Math.random() * 100) + 1
           }
         }
-      )
+      ),
+      zoom: 1,
+      map: 'china'
     }
   ) {
     const { rows, visualMap, center, zoom, map } = data

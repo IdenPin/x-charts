@@ -5,7 +5,6 @@
       class="el-menu-demo"
       mode="horizontal"
       router
-      @select="handleSelect"
     >
       <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="/lineOrBar">折线图 / 柱状图</el-menu-item>
@@ -29,11 +28,6 @@ export default {
   data() {
     return {
       activeIndex: '1'
-    }
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath)
     }
   }
 }

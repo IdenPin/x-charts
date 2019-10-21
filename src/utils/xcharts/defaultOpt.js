@@ -318,6 +318,7 @@ export default {
           type: 'map',
           map: 'china',
           center: [106, 36],
+          zoom: 1,
           scaleLimit: {
             min: 1,
             max: 5
