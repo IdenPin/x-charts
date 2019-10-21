@@ -32,11 +32,12 @@ export default {
       }
     })
     this.basinMap.Echarts.registerMap(
-      'china',
+      'liuYu',
       require('@/utils/xcharts/data/map/ly.min.json')
     )
     // 传入数据渲染
     this.basinMap.setData({
+      map: 'liuYu',
       visualMap: [0, 1000],
       rows: Array.from({ length: LIU_YU.length }, (_, index) => {
         return {
