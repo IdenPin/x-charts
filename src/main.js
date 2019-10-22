@@ -3,10 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
-import Charts from 'echarts'
+import eCharts from 'echarts'
 import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.prototype.$charts = Charts
+Vue.prototype.$eCharts = eCharts
 Vue.use(ElementUI, { size: 'medium', zIndex: 3000 })
 Vue.config.productionTip = false
 

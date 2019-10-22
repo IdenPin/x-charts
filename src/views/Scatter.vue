@@ -52,15 +52,15 @@ export default {
           code: `this.chart1 = new Xcharts('chart1', 'scatter', this.opt).setData({
   legendData,
   rows
-})
-var myRegression = ecStat.regression('logarithmic', ecStatData)
-myRegression.points.sort(function(a, b) {
-  return a[0] - b[0]
 })`
         },
         {
           title: 'Logarithmic 散点图',
-          code: `this.chart2 = new Xcharts('chart2', 'scatter', this.opt).setData({
+          code: `var myRegression = ecStat.regression('logarithmic', ecStatData)
+myRegression.points.sort(function(a, b) {
+  return a[0] - b[0]
+})
+this.chart2 = new Xcharts('chart2', 'scatter', this.opt).setData({
   ecStat: {
     data: [
       {
@@ -189,11 +189,11 @@ myRegression.points.sort(function(a, b) {
         legendData,
         rows
       })
+      // 图三
       var myRegression = ecStat.regression('logarithmic', ecStatData)
       myRegression.points.sort(function(a, b) {
         return a[0] - b[0]
       })
-      // 图三
       this.chart2 = new Xcharts('chart2', 'scatter', this.opt).setData({
         ecStat: {
           data: [

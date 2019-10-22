@@ -6,6 +6,8 @@
  * @LastEditors: Please set LastEditors
  */
 import { MockData } from '@/utils'
+import { MAP_PROVINCES } from '@/utils/xcharts/data/map/provinceMapData'
+
 export default {
   line(
     data = {
@@ -232,6 +234,33 @@ export default {
         }
       })
     }
+    this.render()
+  },
+  map(
+    data = {
+      visualMap: [0, 100],
+      rows: Array.from(
+        { length: Object.keys(MAP_PROVINCES).length },
+        (_, index) => {
+          return {
+            name: Object.keys(MAP_PROVINCES)[index],
+            value: Math.floor(Math.random() * 100) + 1
+          }
+        }
+      ),
+      zoom: 1,
+      map: 'china'
+    }
+  ) {
+    const { rows, visualMap, center, zoom, map } = data
+    const [vMin, vMax] = visualMap
+    this.mergeOpt.series[0].data = rows
+    this.mergeOpt.series[0].center = center
+    this.mergeOpt.series[0].zoom = zoom
+    this.mergeOpt.series[0].map = map
+    this.mergeOpt.visualMap.min = vMin
+    this.mergeOpt.visualMap.max = vMax
+
     console.log('this.mergeOpt', this.mergeOpt)
     this.render()
   }
