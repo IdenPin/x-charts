@@ -17,7 +17,7 @@ new Xcharts(el: HTMLDivElement, type?: String, options?: Object).setData(data?: 
   data 中 rows 表示图表的纬度
   options 选传字段，默认使用预置的 default options。可以根据自己项目情况抽离出一份自己的 default options
 
-**注意** : 目前支持的 type 类型有 `line | bar | pie`，将持续更新中
+**注意** : 目前支持的 type 类型有 `line | bar | pie | radar | scatter | map`，项目续更新中
 
 ```js
 // 使用预置 options
