@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# x-charts        ![https://travis-ci.com/IdenPin/x-charts.svg?branch=master](https://travis-ci.com/IdenPin/x-charts.svg?branch=master)   ![https://img.shields.io/github/license/IdenPin/x-charts](https://img.shields.io/github/license/IdenPin/x-charts)
-=======
 # x-charts ![https://travis-ci.com/IdenPin/x-charts.svg?branch=master](https://travis-ci.com/IdenPin/x-charts.svg?branch=master) ![https://img.shields.io/github/license/IdenPin/x-charts](https://img.shields.io/github/license/IdenPin/x-charts)
->>>>>>> dev
 
 ## 特性
 
