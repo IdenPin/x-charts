@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <el-menu
-      :default-active="$route.path"
-      class="el-menu-demo"
-      mode="horizontal"
-      router
-    >
+    <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" router>
       <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="/lineOrBar">折线图 / 柱状图</el-menu-item>
       <el-menu-item index="/pie">饼图</el-menu-item>
@@ -36,7 +31,7 @@ export default {
 html,
 body {
   margin: 0;
-  background-color: #f1f1f1;
+  background-color: #f5f7ff;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
