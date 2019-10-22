@@ -8,7 +8,7 @@
 
 ## 使用方法
 
-`npm i @pdeng/x-charts'
+`npm i @pdeng/x-charts`
 
 new Xcharts(el: HTMLDivElement, type?: String, options?: Object).setData(data?: {rows:? Array, columns?: Array, legendData?: Array})
 
