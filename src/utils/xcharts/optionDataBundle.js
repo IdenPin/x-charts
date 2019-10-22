@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-10-16 23:18:47
  * @LastEditors: Please set LastEditors
  */
-import { MockData } from '@/utils'
-import { MAP_PROVINCES } from '@/utils/xcharts/data/map/provinceMapData'
+import { MockData } from './utils'
+import { MAP_PROVINCES } from './data/map/provinceMapData'
 
 export default {
   line(

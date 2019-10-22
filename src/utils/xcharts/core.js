@@ -6,7 +6,7 @@
  * @LastEditors: Please set LastEditors
  */
 import Echarts from 'echarts'
-import { deepMerge } from '@/utils/'
+import { deepMerge } from './utils'
 import DefaultOpt from './defaultOpt'
 import { LOADING_STYLE } from './constants'
 import OptionDataBundle from './optionDataBundle'

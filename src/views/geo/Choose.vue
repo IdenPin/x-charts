@@ -515,12 +515,12 @@ export default {
         zoom: 5,
         map: this.mapName,
         rows: Array.from(
-          { length: this.areaCityList[v-1].data.length },
+          { length: this.areaCityList[v - 1].data.length },
           // { length: Object.keys(MAP_CITY).length },
           (_, index) => {
             return {
-              name: this.areaCityList[v-1].data[index].region_name,
-              value: this.areaCityList[v-1].data[index].total
+              name: this.areaCityList[v - 1].data[index].region_name,
+              value: this.areaCityList[v - 1].data[index].total
             }
           }
         )

@@ -8,9 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@pdeng/x-charts": "0.0.3-0",
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
-    "echarts": "^4.3.0",
+    "echarts": "^4.4.0",
     "element-ui": "^2.12.0",
     "lodash": "^4.17.15",
     "vue": "^2.6.10",
