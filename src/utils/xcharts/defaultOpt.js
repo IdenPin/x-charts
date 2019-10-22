@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-10-17 10:13:48
  * @LastEditors: Please set LastEditors
  */
-import { deepMerge } from '@/utils'
-import { DEFAULT_THEME, OBJECT_COLORS } from '@/utils/xcharts/constants'
+import { deepMerge } from './utils'
+import { DEFAULT_THEME, OBJECT_COLORS } from './constants'
 export default {
   line: () => {
     return Object.assign({}, DEFAULT_THEME(), {

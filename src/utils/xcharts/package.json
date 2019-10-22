@@ -1,0 +1,19 @@
+{
+  "name": "@pdeng/x-charts",
+  "version": "0.0.3-0",
+  "description": "基于 echarts 二次封装的图表库",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "echarts",
+    "charts",
+    "x-charts"
+  ],
+  "author": "pdeng",
+  "license": "ISC",
+  "dependencies": {
+    "echarts": "^4.4.0"
+  }
+}
