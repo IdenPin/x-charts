@@ -4,9 +4,14 @@
       <div slot="header" class="clearfix">
         <span>省市区三级下钻</span>
         <div class="map-crumb">
-          <div class="item" v-for="(item, index) in mapCrumb" :key="index" @click="crumbEvent(index)">
-            <span>{{item.name}}</span>
-            <i class="el-icon-arrow-right" v-if="index<2"/>
+          <div
+            v-for="(item, index) in mapCrumb"
+            :key="index"
+            class="item"
+            @click="crumbEvent(index)"
+          >
+            <span>{{ item.name }}</span>
+            <i v-if="index<2" class="el-icon-arrow-right" />
           </div>
         </div>
       </div>
@@ -18,14 +23,14 @@
 </template>
 <style lang="scss">
 .map-crumb {
-  float:right;
+  float: right;
   .item {
     display: inline-block;
     cursor: pointer;
-    span{
-        display: inline-block;
-        border-bottom: 2px solid #409eff;
-        padding: 0 10px 4px;
+    span {
+      display: inline-block;
+      border-bottom: 2px solid #409eff;
+      padding: 0 10px 4px;
     }
   }
 }
@@ -51,7 +56,7 @@ export default {
       sourceJson: [],
       mapCrumb: [
         {
-          name: '全国',
+          name: '全国'
         }
       ]
     }
@@ -108,30 +113,33 @@ export default {
     },
     // 动态加载地图 json 资源
     loadMapJson() {
-        // 通过 data传入的name 匹配获得 require 的文件 name
-        if (this.mapName === 'china') {
-          this.sourceJson[0] = require('@/utils/xcharts/data/map/china.json')
-          this.zMapLevel = 0
-        } else if (this.mapName in MAP_PROVINCES) {
-          const temp = MAP_PROVINCES[this.mapName][0]
-          this.sourceJson[1] = require(`@/utils/xcharts/data/map/province/${temp}.json`)
-          this.zMapLevel = 1
-        } else if (this.mapName in MAP_CITY) {
-          const temp = MAP_CITY[this.mapName]
-          this.sourceJson[2] = require(`@/utils/xcharts/data/map/city/${temp}.json`)
-          this.zMapLevel = 2
-        } else {
-          // 没有地图资源，钻不动了
-          return true
-        }
-        this.chinaMap.Echarts.registerMap(this.mapName, this.sourceJson[this.zMapLevel])
+      // 通过 data传入的name 匹配获得 require 的文件 name
+      if (this.mapName === 'china') {
+        this.sourceJson[0] = require('@/utils/xcharts/data/map/china.json')
+        this.zMapLevel = 0
+      } else if (this.mapName in MAP_PROVINCES) {
+        const temp = MAP_PROVINCES[this.mapName][0]
+        this.sourceJson[1] = require(`@/utils/xcharts/data/map/province/${temp}.json`)
+        this.zMapLevel = 1
+      } else if (this.mapName in MAP_CITY) {
+        const temp = MAP_CITY[this.mapName]
+        this.sourceJson[2] = require(`@/utils/xcharts/data/map/city/${temp}.json`)
+        this.zMapLevel = 2
+      } else {
+        // 没有地图资源，钻不动了
+        return true
+      }
+      this.chinaMap.Echarts.registerMap(
+        this.mapName,
+        this.sourceJson[this.zMapLevel]
+      )
     },
     // 地图事件
     mapEvent(v) {
       this.chinaMap.chart.on('click', data => {
         this.mapName = data.name
-        if(this.loadMapJson()){
-          return 
+        if (this.loadMapJson()) {
+          return
         }
         this.mapCrumb.push({
           name: data.name
@@ -141,19 +149,16 @@ export default {
         this.sourceJson[this.zMapLevel].features.forEach(v => {
           currentMapItem.push(v.properties.name)
         })
-        
+
         const params = {
           visualMap: [0, 1000],
           map: this.mapName,
-          rows: Array.from(
-            { length: currentMapItem.length },
-            (_, index) => {
-              return {
-                name: currentMapItem[index],
-                value: Math.floor(Math.random() * 1000) + 1
-              }
+          rows: Array.from({ length: currentMapItem.length }, (_, index) => {
+            return {
+              name: currentMapItem[index],
+              value: Math.floor(Math.random() * 1000) + 1
             }
-          )
+          })
         }
         this.renderChart(params)
       })
@@ -163,25 +168,26 @@ export default {
       this.mapName = !index ? 'china' : this.mapCrumb[index].name
       this.mapCrumb.splice(index + 1, this.mapCrumb.length - 1)
       this.zMapLevel = index
-      this.chinaMap.Echarts.registerMap(this.mapName, this.sourceJson[this.zMapLevel])
+      this.chinaMap.Echarts.registerMap(
+        this.mapName,
+        this.sourceJson[this.zMapLevel]
+      )
+
       // mock 数据渲染地图
       const currentMapItem = []
       this.sourceJson[this.zMapLevel].features.forEach(v => {
         currentMapItem.push(v.properties.name)
       })
       const params = {
-          visualMap: [0, 1000],
-          map: this.mapName,
-          rows: Array.from(
-            { length: currentMapItem.length },
-            (_, index) => {
-              return {
-                name: currentMapItem[index],
-                value: Math.floor(Math.random() * 1000) + 1
-              }
-            }
-          )
-        }
+        visualMap: [0, 1000],
+        map: this.mapName,
+        rows: Array.from({ length: currentMapItem.length }, (_, index) => {
+          return {
+            name: currentMapItem[index],
+            value: Math.floor(Math.random() * 1000) + 1
+          }
+        })
+      }
       this.renderChart(params)
     }
   }
