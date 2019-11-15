@@ -37,9 +37,15 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #fff;
+  color: #2c3e50;
   .el-menu.el-menu--horizontal {
     border-bottom: none !important;
+  }
+  .el-menu-item.is-active {
+    border-bottom: 2px solid #2c3e50;
+  }
+  ul {
+    padding: 0 100px;
   }
 }
 </style>
